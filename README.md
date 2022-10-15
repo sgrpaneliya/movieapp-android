@@ -14,6 +14,6 @@
 - [4] For service call used Retrofit
  
  ## Requirements
-- Adnroid Studio
+- Android Studio
 
   
