@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.movieapp.app.Models.MovieList
 import com.movieapp.app.views.activity.MovieDetailsActivity
 import com.movieapp.app.R
+import com.movieapp.app.Utils.loadImage
 import kotlinx.android.synthetic.main.recyclerview_movie_list.view.*
 
 /**
@@ -53,12 +54,7 @@ class MoviePackageAdapter(
             movieRateTextView.text = items.voteAverage.toString()
             movieDetailsTextView.text = items.overview
 
-            Glide.with(context)
-                .load(items.posterPath)
-                .placeholder(R.mipmap.ic_launcher)
-                .error(R.mipmap.ic_launcher)
-                .into(moviePicImageView)
-
+            moviePicImageView.loadImage(items.posterPath)
             movieListLayout.setOnClickListener(View.OnClickListener {
                 val intent = Intent(context, MovieDetailsActivity::class.java)
                 intent.putExtra("MovieID", items.id.toString())

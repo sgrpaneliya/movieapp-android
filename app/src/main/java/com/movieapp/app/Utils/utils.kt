@@ -11,8 +11,10 @@ import android.text.TextUtils
 import android.util.DisplayMetrics
 import android.util.Patterns
 import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.bumptech.glide.Glide
 import com.movieapp.app.R
 import java.util.*
 
@@ -140,4 +142,12 @@ class utils {
 
         }
     }
+}
+
+fun ImageView.loadImage(imageUrl: String) {
+    Glide.with(context)
+        .load("https://image.tmdb.org/t/p/w500$imageUrl")
+        .placeholder(R.mipmap.ic_launcher)
+        .error(R.mipmap.ic_launcher)
+        .into(this)
 }

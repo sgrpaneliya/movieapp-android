@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.movieapp.app.R
+import com.movieapp.app.Utils.loadImage
 import com.movieapp.app.Utils.utils
 import com.movieapp.app.databinding.ActivityMovieDetailsBinding
 import com.movieapp.app.viewModel.MovieDetailViewModel
@@ -67,17 +68,8 @@ class MovieDetailsActivity : AppCompatActivity() {
             movieDetailViewModel.movieRate.value = movieData.voteAverage.toString()
             movieDetailViewModel.moviedetail.value = movieData.overview
 
-            Glide.with(application)
-                .load(movieData.posterPath)
-                .placeholder(R.mipmap.ic_launcher)
-                .error(R.mipmap.ic_launcher)
-                .into(binding!!.movieImageView)
-
-            Glide.with(application)
-                .load(movieData.backdropPath)
-                .placeholder(R.mipmap.ic_launcher)
-                .error(R.mipmap.ic_launcher)
-                .into(binding!!.movieImage)
+            binding!!.movieImageView.loadImage(movieData.posterPath)
+            binding!!.movieImage.loadImage(movieData.backdropPath)
 
             for (i in 0..movieData.genres.size - 1) {
                 genresList.add(movieData.genres.get(i).name)
